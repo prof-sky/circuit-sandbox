@@ -294,9 +294,9 @@ schematic = (function() {
 			if (analyses.indexOf('ac') != -1) {
 				this.tools.ac = this.add_tool('AC',i18n.Perform_AC_Analysis,this.setup_ac_analysis);
 				this.enable_tool('ac',true);
-			    this.ac_npts = '50'; // default values for AC Analysis
-			    this.ac_fstart = '10';
-			    this.ac_fstop = '1G';
+			    this.ac_npts = '500'; // default values for AC Analysis
+			    this.ac_fstart = '0.01';
+			    this.ac_fstop = '100';
 			    this.ac_source_name = undefined;
 			}
 
@@ -312,7 +312,7 @@ schematic = (function() {
 	    //this.canvas = document.createElement('canvas');
 	    this.width = input.getAttribute('width');
 	    //this.width = parseInt(this.width == undefined ? '400' : this.width);
-		this.width = (window.innerWidth > 0) ? window.innerWidth-part_w-28 : screen.width-part_w-28;
+		this.width = (window.innerWidth > 0) ? window.innerWidth-part_w-35 : screen.width-part_w-35;
 	    //this.canvas.width = this.width;
 	    this.height = input.getAttribute('height');
 	    //this.height = parseInt(this.height == undefined ? '300' : this.height);
