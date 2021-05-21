@@ -169,12 +169,12 @@ schematic = (function() {
     	'c': [Capacitor, i18n.Capacitor],
     	'l': [Inductor, i18n.Inductor],
     	'd': [Diode, i18n.Diode],
-    	'p': [PFet, i18n.PFet],
-    	'n': [NFet, i18n.NFet],
-	    'pnp': [PNP, i18n.PNP],
-	    'npn': [NPN, i18n.NPN],
+    	//'p': [PFet, i18n.PFet],
+    	//'n': [NFet, i18n.NFet],
+	    //'pnp': [PNP, i18n.PNP],
+	    //'npn': [NPN, i18n.NPN],
     	'o': [OpAmp, i18n.Op_Amp],
-    	'o2': [OpAmp2, i18n.Op_Amp],
+    	//'o2': [OpAmp2, i18n.Op_Amp],
     	's': [Probe, i18n.Voltage_probe],
     	'a': [Ammeter, i18n.Current_probe]
     };
@@ -272,12 +272,12 @@ schematic = (function() {
 		    this.tools.save = this.add_tool(save_icon,i18n.Save_netlist,this.save_netlist);
 		    this.enable_tool('save',true);   
 
-			this.tools.link = this.add_tool(link_icon,i18n.Link_tip,this.share_link);
-			this.enable_tool('link',true);
+			//this.tools.link = this.add_tool(link_icon,i18n.Link_tip,this.share_link);
+			//this.enable_tool('link',true);
 
-			this.tools.cut = this.add_tool(cut_icon,i18n.Cut,this.cut);
-			this.tools.copy = this.add_tool(copy_icon,i18n.Copy,this.copy);
-			this.tools.paste = this.add_tool(paste_icon,i18n.Paste,this.paste);
+			//this.tools.cut = this.add_tool(cut_icon,i18n.Cut,this.cut);
+			//this.tools.copy = this.add_tool(copy_icon,i18n.Copy,this.copy);
+			//this.tools.paste = this.add_tool(paste_icon,i18n.Paste,this.paste);
 
 			this.tools.delete = this.add_tool(delete_icon,i18n.Delete,this.delete_selected);
 			this.tools.rotate = this.add_tool(rotate_icon,i18n.Rotate,this.rotate_selected);
@@ -301,7 +301,7 @@ schematic = (function() {
 			}
 
 			if (analyses.indexOf('tran') != -1) {
-				this.tools.tran = this.add_tool('TRAN',i18n.Perform_Transient_Analysis,this.transient_analysis);
+				this.tools.tran = this.add_tool('TR',i18n.Perform_Transient_Analysis,this.transient_analysis);
 				this.enable_tool('tran',true);
 			    this.tran_npts = '100';  // default values for transient analysis
 			    this.tran_tstop = '0.01';
@@ -311,10 +311,12 @@ schematic = (function() {
 	    // set up schematic diagram canvas
 	    //this.canvas = document.createElement('canvas');
 	    this.width = input.getAttribute('width');
-	    this.width = parseInt(this.width == undefined ? '400' : this.width);
+	    //this.width = parseInt(this.width == undefined ? '400' : this.width);
+		this.width = (window.innerWidth > 0) ? window.innerWidth-part_w-28 : screen.width-part_w-28;
 	    //this.canvas.width = this.width;
 	    this.height = input.getAttribute('height');
-	    this.height = parseInt(this.height == undefined ? '300' : this.height);
+	    //this.height = parseInt(this.height == undefined ? '300' : this.height);
+		this.height = (window.innerHeight > 0) ? window.innerHeight-75 : screen.height-75;
 	    //this.canvas.height = this.height;
 	    //this.canvas.style.display = 'block'; //gets rid of the little sliver of default padding at the bottom.
 		//Create canvas with the device resolution.
@@ -527,7 +529,7 @@ schematic = (function() {
 	    var parts_per_column = Math.floor(this.height / (part_h + 5));  // mysterious extra padding
 		// Try to keep a two-column case balanced.
 	    parts_per_column = Math.min(parts_per_column,
-					Math.ceil(this.parts_bin.length/2));	    for (let i = 0; i < parts_per_column; ++i) {
+					Math.ceil(this.parts_bin.length/1));	    for (let i = 0; i < parts_per_column; ++i) {
 	    	tr = document.createElement('tr');
 	    	parts_table.appendChild(tr);
 	    	for (let j = i; j < this.parts_bin.length; j += parts_per_column) {
@@ -570,8 +572,8 @@ schematic = (function() {
 	    this.zoomall();
 	}
 
-	var part_w = 42;   // size of a parts bin compartment
-	var part_h = 42;
+	var part_w = 35;   // size of a parts bin compartment
+	var part_h = 35;
 
 	Schematic.prototype.add_component = function(new_c) {
 		this.components.push(new_c);
