@@ -312,7 +312,7 @@ schematic = (function() {
 	    //this.canvas = document.createElement('canvas');
 	    this.width = input.getAttribute('width');
 	    //this.width = parseInt(this.width == undefined ? '400' : this.width);
-		this.width = (window.innerWidth > 0) ? window.innerWidth-part_w-35 : screen.width-part_w-35;
+		this.width = (window.innerWidth > 0) ? window.innerWidth-part_w-40 : screen.width-part_w-40;
 	    //this.canvas.width = this.width;
 	    this.height = input.getAttribute('height');
 	    //this.height = parseInt(this.height == undefined ? '300' : this.height);
