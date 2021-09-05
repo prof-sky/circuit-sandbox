@@ -272,8 +272,8 @@ schematic = (function() {
 		    this.tools.save = this.add_tool(save_icon,i18n.Save_netlist,this.save_netlist);
 		    this.enable_tool('save',true);   
 
-			//this.tools.link = this.add_tool(link_icon,i18n.Link_tip,this.share_link);
-			//this.enable_tool('link',true);
+			this.tools.link = this.add_tool(link_icon,i18n.Link_tip,this.share_link);
+			this.enable_tool('link',true);
 
 			//this.tools.cut = this.add_tool(cut_icon,i18n.Cut,this.cut);
 			//this.tools.copy = this.add_tool(copy_icon,i18n.Copy,this.copy);
