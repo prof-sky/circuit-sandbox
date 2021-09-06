@@ -81,7 +81,7 @@ window.onload = add_schematic_handler(window.onload);
 } */
 
 // URL of ciruit sandbox simluator, used to create shareable link.
-var strSimulator = 'https://spinningnumbers.org/circuit-sandbox/index.html';
+var strSimulator = 'https://prof-sky.github.io/circuit-sandbox/index.html';
 
 // from: http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 function getURLParameterByName(name, url) {
@@ -1021,6 +1021,23 @@ schematic = (function() {
 		console.log("Saved ckt.txt to Downloads and localStorage... ");
 		console.log(localStorage.getItem("ckt"));
 	};
+	
+	function copyStringToClipboard (str) {
+	   // Temporäres Element erzeugen
+	   var el = document.createElement('textarea');
+	   // Den zu kopierenden String dem Element zuweisen
+	   el.value = str;
+	   // Element nicht editierbar setzen und aus dem Fenster schieben
+	   el.setAttribute('readonly', '');
+	   el.style = {position: 'absolute', left: '-9999px'};
+	   document.body.appendChild(el);
+	   // Text innerhalb des Elements auswählen
+	   el.select();
+	   // Ausgewählten Text in die Zwischenablage kopieren
+	   document.execCommand('copy');
+	   // Temporäres Element löschen
+	   document.body.removeChild(el);
+    }
 
 	Schematic.prototype.share_link = function() {
 	//create and display a sharable link	
@@ -1047,6 +1064,7 @@ schematic = (function() {
 		console.log(strSimulator + '?value=' + value_enc);
 		console.log('Decoded link...');
 		console.log(strSimulator + '?value=' + value);
+		copyStringToClipboard(strSimulator + '?value=' + value);
 	};
 
 	Schematic.prototype.open_netlist = function() {
