@@ -1329,6 +1329,8 @@ schematic = (function() {
 		content.fields = fields;
 		content.sch = this;
 
+		this.canvas.mouse_x=this.canvas.mouse_x-50;
+		if (this.canvas.mouse_x<0) this.canvas.mouse_x=0;
 		this.dialog(i18n.Transient_Analysis,content,function(content) {
 			var sch = content.sch;
 			var ckt = sch.extract_circuit();
@@ -1410,6 +1412,7 @@ schematic = (function() {
 				sch.window(i18n.Transient_Analysis,graph,0, true);
 			}
 		});
+		this.dialog( 'option', 'position', [0, 0] );
 	};
 
 	// t is the time at which we want a value
