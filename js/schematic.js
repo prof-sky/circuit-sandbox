@@ -285,12 +285,14 @@ schematic = (function() {
 
 	    // simulation interface if cktsim.js script is loaded
 	    if (typeof cktsim != 'undefined') {
-	    	if (analyses.indexOf('dc') != -1) {
-	    		this.tools.dc = this.add_tool('DC',i18n.Perform_DC_Analysis,this.dc_analysis);
-	    		this.enable_tool('dc',true);
-		    	this.dc_max_iters = '1000';  // default values dc solution
-			}
 
+			if (analyses.indexOf('tran') != -1) {
+				this.tools.tran = this.add_tool('TR',i18n.Perform_Transient_Analysis,this.transient_analysis);
+				this.enable_tool('tran',true);
+			    this.tran_npts = '100';  // default values for transient analysis
+			    this.tran_tstop = '0.01';
+			}
+			
 			if (analyses.indexOf('ac') != -1) {
 				this.tools.ac = this.add_tool('AC',i18n.Perform_AC_Analysis,this.setup_ac_analysis);
 				this.enable_tool('ac',true);
@@ -299,12 +301,11 @@ schematic = (function() {
 			    this.ac_fstop = '100';
 			    this.ac_source_name = undefined;
 			}
-
-			if (analyses.indexOf('tran') != -1) {
-				this.tools.tran = this.add_tool('TR',i18n.Perform_Transient_Analysis,this.transient_analysis);
-				this.enable_tool('tran',true);
-			    this.tran_npts = '100';  // default values for transient analysis
-			    this.tran_tstop = '0.01';
+			
+			if (analyses.indexOf('dc') != -1) {
+	    		this.tools.dc = this.add_tool('DC',i18n.Perform_DC_Analysis,this.dc_analysis);
+	    		this.enable_tool('dc',true);
+		    	this.dc_max_iters = '1000';  // default values dc solution
 			}
 		}
 
@@ -1329,8 +1330,8 @@ schematic = (function() {
 		content.fields = fields;
 		content.sch = this;
 
-		this.canvas.mouse_x=this.canvas.mouse_x-50;
-		if (this.canvas.mouse_x<0) this.canvas.mouse_x=0;
+		// this.canvas.mouse_x=this.canvas.mouse_x-50;
+		// if (this.canvas.mouse_x<0) this.canvas.mouse_x=0;
 		this.dialog(i18n.Transient_Analysis,content,function(content) {
 			var sch = content.sch;
 			var ckt = sch.extract_circuit();
