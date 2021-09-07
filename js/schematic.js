@@ -1412,7 +1412,6 @@ schematic = (function() {
 				sch.window(i18n.Transient_Analysis,graph,0, true);
 			}
 		});
-		this.dialog( 'option', 'position', [0, 0] );
 	};
 
 	// t is the time at which we want a value
